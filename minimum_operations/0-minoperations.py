@@ -1,28 +1,22 @@
 #!/usr/bin/python3
 
-  """minimum operations."""
+"""minimum operations."""
 
 
 def minOperations(n):
-    if n <= 1:
+    """Return the fewest number of operations needed."""
+    if n == 1:
         return 0
 
     operations = 0
-    current_length = 1
-    clipboard = 0
+    divisor = 2
 
-    while current_length < n:
-        if n % current_length == 0:
-            clipboard = current_length
-            operations += 2
-        current_length += clipboard
+    while n > 1:
+        if n % divisor == 0:
+            n //= divisor
+            operations += divisor
+        else:
+            divisor += 1
 
     return operations
-
-# Test cases
-n1 = 4
-print("Min # of operations to reach {} char: {}".format(n1, minOperations(n1)))
-
-n2 = 12
-print("Min # of operations to reach {} char: {}".format(n2, minOperations(n2)))
 
