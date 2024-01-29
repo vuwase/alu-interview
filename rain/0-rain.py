@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+
+"""
+Calculate how many square units of water will be retained after it rains.
+"""
+
+
 def rain(walls):
     if not walls:
         return 0
@@ -14,17 +21,8 @@ def rain(walls):
     for i in range(n - 2, -1, -1):
         right_max[i] = max(right_max[i + 1], walls[i])
 
-    total_water = 0
+    water = 0
     for i in range(n):
-        water_at_wall = min(left_max[i], right_max[i]) - walls[i]
-        total_water += max(0, water_at_wall)
+        water += min(left_max[i], right_max[i]) - walls[i]
 
-    return total_water
-
-# Example usage
-walls1 = [0, 1, 0, 2, 0, 3, 0, 4]
-print(rain(walls1))  # Output: 6
-
-walls2 = [2, 0, 0, 4, 0, 0, 1, 0]
-print(rain(walls2))  # Output: 6
-
+    return water if water > 0 else 0
